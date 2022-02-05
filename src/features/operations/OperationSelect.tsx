@@ -24,8 +24,7 @@ export const OperationSelect = ({
         <Container>
             <Select
                 size='small'
-                labelId='demo-simple-select-label'
-                id='demo-simple-select'
+                label='Select...'
                 value={value}
                 onChange={onSelect}
             >
