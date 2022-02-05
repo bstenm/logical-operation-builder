@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const OperationSelect = ({
-    value = 'select...',
+    value,
     onValueChange,
 }: Props): JSX.Element => {
     const onSelect = (e: SelectChangeEvent<string>): void => {
@@ -23,6 +23,7 @@ export const OperationSelect = ({
     return (
         <Container>
             <Select
+                size='small'
                 labelId='demo-simple-select-label'
                 id='demo-simple-select'
                 value={value}
