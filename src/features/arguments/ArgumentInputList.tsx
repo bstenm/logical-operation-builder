@@ -1,22 +1,17 @@
 import { styled } from '@mui/material/styles';
-import MuiButton from '@mui/material/Button';
 
-import { ArgumentInput } from 'features/arguments/ArgumentInput';
-import { useAppDispatch, useAppSelector } from 'app/hooks';
 import {
     Argument,
     getArguments,
     argumentsActions,
 } from 'features/arguments/argumentsSlice';
+import { AddButton } from 'components/AddButton';
+import { ArgumentInput } from 'features/arguments/ArgumentInput';
+import { useAppDispatch, useAppSelector } from 'app/hooks';
 
 const Container = styled('div')`
     display: flex;
     flex-direction: column;
-    border: 1px solid red;
-`;
-
-const Button = styled(MuiButton)`
-    margin-top: 20px;
 `;
 
 export const ArgumentInputList = (): JSX.Element => {
@@ -33,21 +28,15 @@ export const ArgumentInputList = (): JSX.Element => {
                     key={e.id}
                     value={e.value}
                     name={e.name}
-                    onValueChange={(v: boolean) =>
-                        dispatch(updateValue({ id: e.id, value: v }))
-                    }
-                    onNameChange={(n: string) =>
-                        dispatch(updateName({ id: e.id, value: n }))
-                    }
+                    onValueChange={(v: boolean): void => {
+                        dispatch(updateValue({ id: e.id, value: v }));
+                    }}
+                    onNameChange={(n: string): void => {
+                        dispatch(updateName({ id: e.id, value: n }));
+                    }}
                 />
             ))}
-            <Button
-                disableElevation
-                variant='contained'
-                onClick={() => dispatch(addArgument())}
-            >
-                Add +
-            </Button>
+            <AddButton onClick={() => dispatch(addArgument())} />
         </Container>
     );
 };

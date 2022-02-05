@@ -6,10 +6,11 @@ import { ChangeEvent } from 'react';
 import { SelectChangeEvent } from '@mui/material/Select';
 
 const Container = styled('div')`
+    display: flex;
     margin-top: 20px;
 `;
 
-const Select = styled(MuiSelect)`
+const Select = styled('div')`
     width: 90px;
 `;
 
@@ -26,7 +27,7 @@ export const ArgumentInput = ({
     onValueChange,
     onNameChange,
 }: Props): JSX.Element => {
-    const onSelect = (e: SelectChangeEvent<unknown>): void => {
+    const onSelect = (e: SelectChangeEvent<boolean>): void => {
         onValueChange(e.target.value === 'true');
     };
 
@@ -45,9 +46,11 @@ export const ArgumentInput = ({
                 variant='outlined'
                 onChange={onInput}
             />
-            <Select size='small' value={value.toString()} onChange={onSelect}>
-                <MenuItem value='false'>false</MenuItem>
-                <MenuItem value='true'>true</MenuItem>
+            <Select>
+                <MuiSelect size='small' value={value} onChange={onSelect}>
+                    <MenuItem value='false'>false</MenuItem>
+                    <MenuItem value='true'>true</MenuItem>
+                </MuiSelect>
             </Select>
         </Container>
     );

@@ -5,42 +5,36 @@ import { RootState } from 'app/store';
 
 export type Operation = {
     id: number;
-    name: string;
-    value: boolean;
+    value: string;
 };
 
 type Payload = {
     payload: {
         id: number;
-        value: string | boolean;
+        value: string;
     };
 };
 
-const initialValues: Omit<Operation, 'id'> = {
-    value: false,
-    name: 'New Arg',
-};
+const initialValue: Omit<Operation, 'id'> = { value: '' };
 
-const initialState: Operation[] = [{ ...initialValues, id: 1 }];
+const initialState: Operation[] = [{ ...initialValue, id: 1 }];
 
 export const operationsSlice = createSlice({
     name: 'operations',
     initialState,
     reducers: {
-        updateName(state: Operation[], { payload: { id, value } }: Payload) {
+        updateOperation(
+            state: Operation[],
+            { payload: { id, value } }: Payload
+        ) {
             const index = state.findIndex((e) => e.id === id);
             // Using ImmerJs under the hood
-            state[index].name = value as string;
-        },
-        updateValue(state: Operation[], { payload: { id, value } }: Payload) {
-            const index = state.findIndex((e) => e.id === id);
-            // Using ImmerJs under the hood
-            state[index].value = value as boolean;
+            state[index].value = value;
         },
         addOperation(state: Operation[]) {
             const entry = maxBy(state, (e: Operation) => e.id);
             // Using ImmerJs under the hood
-            state.push({ ...initialValues, id: (entry?.id ?? 0) + 1 });
+            state.push({ ...initialValue, id: (entry?.id ?? 0) + 1 });
         },
     },
 });
