@@ -1,58 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
-import './App.css';
+import { styled } from '@mui/material/styles';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
-  );
-}
+import BuilderIcon from 'assets/builder.png';
+import { ArgumentInputList } from 'features/arguments/ArgumentInputList';
+import { OperationInputList } from 'features/operations/OperationInputList';
+
+const Container = styled('div')`
+    display: flex;
+    font-size: calc(10px + 2vmin);
+    align-items: center;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: start;
+    background-color: #fafafa;
+`;
+
+const Builder = styled('img')`
+    margin-top: 60px;
+    margin-bottom: 40px;
+`;
+
+const InputList = styled('div')`
+    display: flex;
+    min-width: 100vw;
+    flex-direction: row;
+    justify-content: space-around;
+`;
+
+const App = (): JSX.Element => {
+    return (
+        <Container>
+            <Builder src={BuilderIcon} alt='Operation builder' width='40px' />
+            <InputList>
+                <ArgumentInputList />
+                <OperationInputList />
+            </InputList>
+        </Container>
+    );
+};
 
 export default App;
