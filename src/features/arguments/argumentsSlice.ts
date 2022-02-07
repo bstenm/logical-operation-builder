@@ -37,7 +37,7 @@ export const argumentsSlice = createSlice({
             // Using ImmerJs under the hood
             state[index].value = value as boolean;
         },
-        addArgument(state: Argument[]) {
+        add(state: Argument[]) {
             const entry = maxBy(state, (e: Argument) => e.id);
             // Using ImmerJs under the hood
             state.push({ ...initialValues, id: (entry?.id ?? 0) + 1 });

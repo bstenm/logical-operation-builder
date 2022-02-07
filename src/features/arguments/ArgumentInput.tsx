@@ -1,13 +1,12 @@
-import MuiSelect from '@mui/material/Select';
 import { styled } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
+import MuiSelect from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import { ChangeEvent } from 'react';
 import { SelectChangeEvent } from '@mui/material/Select';
 
 const Container = styled('div')`
     display: flex;
-    margin-top: 20px;
 `;
 
 const Select = styled('div')`

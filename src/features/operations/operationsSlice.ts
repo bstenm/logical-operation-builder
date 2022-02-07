@@ -1,40 +1,51 @@
-import maxBy from 'lodash/maxBy';
+import { v4 as uuid } from 'uuid';
 import { createSlice } from '@reduxjs/toolkit';
 
-import { RootState } from 'app/store';
+export const operationTypes = ['constant', 'argument', 'and', 'or'] as const;
+
+export type OperationType = typeof operationTypes[number];
 
 export type Operation = {
-    id: number;
+    id: string;
+    type: string;
     value: string;
 };
 
-type Payload = {
+type UpdateOperationPayload = {
     payload: {
         id: number;
         value: string;
     };
 };
 
-const initialValue: Omit<Operation, 'id'> = { value: '' };
+type AddOperationPayload = {
+    payload: {
+        type: OperationType;
+        value: string;
+    };
+};
 
-const initialState: Operation[] = [{ ...initialValue, id: 1 }];
+const initialState: Operation[] = [];
 
 export const operationsSlice = createSlice({
     name: 'operations',
     initialState,
     reducers: {
-        updateOperation(
+        update(
             state: Operation[],
-            { payload: { id, value } }: Payload
+            { payload: { id, value } }: UpdateOperationPayload
         ) {
-            const index = state.findIndex((e) => e.id === id);
+            // const index = state.findIndex((e) => e.id === id);
             // Using ImmerJs under the hood
-            state[index].value = value;
+            // state[index].value = value;
         },
-        addOperation(state: Operation[]) {
-            const entry = maxBy(state, (e: Operation) => e.id);
+        add(
+            state: Operation[],
+            { payload: { type, value } }: AddOperationPayload
+        ) {
+            const id = uuid();
             // Using ImmerJs under the hood
-            state.push({ ...initialValue, id: (entry?.id ?? 0) + 1 });
+            state.push({ id, type, value });
         },
     },
 });
@@ -42,6 +53,3 @@ export const operationsSlice = createSlice({
 export const operationsActions = operationsSlice.actions;
 
 export const operationsReducer = operationsSlice.reducer;
-
-export const getOperations = (state: RootState): Operation[] =>
-    state.operations;

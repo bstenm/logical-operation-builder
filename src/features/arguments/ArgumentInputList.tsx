@@ -1,11 +1,11 @@
 import { styled } from '@mui/material/styles';
+import MuiButton from '@mui/material/Button';
 
 import {
     Argument,
     getArguments,
     argumentsActions,
 } from 'features/arguments/argumentsSlice';
-import { AddButton } from 'components/AddButton';
 import { ArgumentInput } from 'features/arguments/ArgumentInput';
 import { useAppDispatch, useAppSelector } from 'app/hooks';
 
@@ -14,12 +14,17 @@ const Container = styled('div')`
     flex-direction: column;
 `;
 
+const Button = styled(MuiButton)`
+    width: 100px;
+    margin-top: 20px;
+`;
+
 export const ArgumentInputList = (): JSX.Element => {
     const dispatch = useAppDispatch();
 
     const argumentList: Argument[] = useAppSelector(getArguments);
 
-    const { addArgument, updateName, updateValue } = argumentsActions;
+    const { add, updateName, updateValue } = argumentsActions;
 
     return (
         <Container>
@@ -36,7 +41,9 @@ export const ArgumentInputList = (): JSX.Element => {
                     }}
                 />
             ))}
-            <AddButton onClick={() => dispatch(addArgument())} />
+            <Button variant='contained' onClick={() => dispatch(add())}>
+                Add +
+            </Button>
         </Container>
     );
 };

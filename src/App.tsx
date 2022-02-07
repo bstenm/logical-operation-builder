@@ -1,3 +1,4 @@
+import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
 
 import BuilderIcon from 'assets/builder.png';
@@ -16,10 +17,10 @@ const Container = styled('div')`
 
 const Builder = styled('img')`
     margin-top: 60px;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
 `;
 
-const InputList = styled('div')`
+const Inputs = styled('div')`
     display: flex;
     min-width: 100vw;
     flex-direction: row;
@@ -29,11 +30,17 @@ const InputList = styled('div')`
 const App = (): JSX.Element => {
     return (
         <Container>
-            <Builder src={BuilderIcon} alt='Operation builder' width='40px' />
-            <InputList>
+            <Tooltip arrow title={"I'm your personal builder"} placement='top'>
+                <Builder
+                    src={BuilderIcon}
+                    alt='Operation builder'
+                    width='40px'
+                />
+            </Tooltip>
+            <Inputs>
                 <ArgumentInputList />
                 <OperationInputList />
-            </InputList>
+            </Inputs>
         </Container>
     );
 };
