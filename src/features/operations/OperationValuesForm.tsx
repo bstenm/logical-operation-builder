@@ -19,7 +19,11 @@ const SelectContainer = styled('div')`
     margin-top: 15px;
 `;
 
-export const OperationValuesForm = (): JSX.Element => {
+type Props = {
+    operatorId: string;
+};
+
+export const OperationValuesForm = ({ operatorId }: Props): JSX.Element => {
     const [inputList, setInputList] = useState<string[]>([uuid(), uuid()]);
 
     const addInput = () => {
@@ -32,7 +36,7 @@ export const OperationValuesForm = (): JSX.Element => {
         <Container>
             {inputList.map((e: string) => (
                 <SelectContainer key={e}>
-                    <OperationSelect />
+                    <OperationSelect operatorId={operatorId} />
                 </SelectContainer>
             ))}
             <Button variant='contained' onClick={() => addInput()}>

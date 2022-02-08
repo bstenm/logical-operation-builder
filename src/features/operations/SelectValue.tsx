@@ -7,10 +7,11 @@ import CancelOutlinedIcon from '@mui/icons-material/CancelOutlined';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 type Props = {
+    id: string;
     label: string;
     options: string[];
     onSelect(value: string): void;
-    onCancel(): void;
+    onCancel(id: string): void;
     defaultValue: string;
 };
 
@@ -28,6 +29,7 @@ const CancelIcon = styled(CancelOutlinedIcon)`
 `;
 
 export const SelectValue = ({
+    id,
     label,
     options,
     onSelect,
@@ -54,7 +56,7 @@ export const SelectValue = ({
                     ))}
                 </Select>
             </FormControl>
-            <CancelIcon onClick={onCancel} />
+            <CancelIcon onClick={() => onCancel(id)} />
         </Box>
     );
 };

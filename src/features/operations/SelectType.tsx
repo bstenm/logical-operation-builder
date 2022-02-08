@@ -5,10 +5,8 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import MuiFormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
-import {
-    OperationType,
-    operationTypes,
-} from 'features/operations/operationsSlice';
+
+import { operationTypes } from 'config';
 
 const Box = styled(MuiBox)`
     width: 140px;
@@ -20,7 +18,7 @@ const FormControl = styled(MuiFormControl)`
 
 type Props = {
     label?: string;
-    selected: string;
+    selected?: string;
     onSelect: (value: string) => void;
 };
 
@@ -39,11 +37,11 @@ export const SelectType = ({
                 {label && <InputLabel id='select-label'>{label}</InputLabel>}
                 <Select
                     label={label}
-                    value={selected}
+                    value={selected || ''}
                     labelId='select-label'
                     onChange={handleChange}
                 >
-                    {operationTypes.map((option: OperationType) => (
+                    {operationTypes.map((option: string) => (
                         <MenuItem key={option} value={option}>
                             {capitalize(option)}
                         </MenuItem>

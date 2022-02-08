@@ -14,6 +14,10 @@ const Container = styled('div')`
     flex-direction: column;
 `;
 
+const InputContainer = styled('div')`
+    margin-bottom: 15px;
+`;
+
 const Button = styled(MuiButton)`
     width: 100px;
     margin-top: 20px;
@@ -29,17 +33,18 @@ export const ArgumentInputList = (): JSX.Element => {
     return (
         <Container>
             {argumentList.map((e: Argument) => (
-                <ArgumentInput
-                    key={e.id}
-                    value={e.value}
-                    name={e.name}
-                    onValueChange={(v: boolean): void => {
-                        dispatch(updateValue({ id: e.id, value: v }));
-                    }}
-                    onNameChange={(n: string): void => {
-                        dispatch(updateName({ id: e.id, value: n }));
-                    }}
-                />
+                <InputContainer key={e.id}>
+                    <ArgumentInput
+                        value={e.value}
+                        name={e.name}
+                        onValueChange={(v: boolean): void => {
+                            dispatch(updateValue({ id: e.id, value: v }));
+                        }}
+                        onNameChange={(n: string): void => {
+                            dispatch(updateName({ id: e.id, value: n }));
+                        }}
+                    />
+                </InputContainer>
             ))}
             <Button variant='contained' onClick={() => dispatch(add())}>
                 Add +
