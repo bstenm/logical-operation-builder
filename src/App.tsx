@@ -1,17 +1,12 @@
 import Tooltip from '@mui/material/Tooltip';
 import { styled } from '@mui/material/styles';
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
 import BuilderIcon from 'assets/builder.png';
-import { computeValue } from 'libs/computeValue';
 import { ArgumentInputList } from 'features/arguments/ArgumentInputList';
 import { OperationInputList } from 'features/operations/OperationInputList';
-import { useAppSelector } from 'app/hooks';
-import { Argument, getArguments } from 'features/arguments/argumentsSlice';
-import {
-    getOperations,
-    OperationEntry,
-} from 'features/operations/operationsSlice';
-import { useEffect, useState } from 'react';
+import { useComputeValue } from 'libs/useComputeValue';
 
 const Container = styled('div')`
     display: flex;
@@ -40,33 +35,18 @@ const Result = styled('div')(({ theme }) => ({
     fontWeight: 'bold',
 }));
 
+const Icon = styled('span')`
+    position: relative;
+    left: 10px;
+    top: 5px;
+`;
+
 const Error = styled('div')(({ theme }) => ({
     color: theme.palette.primary.dark,
 }));
 
 const App = (): JSX.Element => {
-    const [error, setError] = useState<boolean | null>(null);
-
-    const [value, setValue] = useState<boolean | null>(null);
-
-    const args: Argument[] = useAppSelector(getArguments);
-
-    const operations: OperationEntry[] = useAppSelector(getOperations);
-
-    useEffect(() => {
-        try {
-            setError(false);
-            // The 1st el in the state tree is the one without operatorId key
-            const topLevel: OperationEntry | undefined = operations.find(
-                (e) => !e.operatorId
-            );
-            setValue(
-                topLevel ? computeValue(topLevel, operations, args) : null
-            );
-        } catch (e) {
-            setError(true);
-        }
-    }, [args, operations]);
+    const [value, error] = useComputeValue();
 
     return (
         <Container>
@@ -86,7 +66,18 @@ const App = (): JSX.Element => {
                 <OperationInputList />
             </Inputs>
             {error && <Error>{error}</Error>}
-            {!error && value !== null && <Result>{value?.toString()}</Result>}
+            {!error && value !== null && (
+                <Result>
+                    {value?.toString()}
+                    <Icon>
+                        {value ? (
+                            <ThumbUpOffAltIcon />
+                        ) : (
+                            <ThumbDownOffAltIcon />
+                        )}
+                    </Icon>
+                </Result>
+            )}
         </Container>
     );
 };

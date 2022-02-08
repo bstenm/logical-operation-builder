@@ -1,4 +1,17 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## TODO
+
+-   Fix bug when updating an argument name while this argument in selected in the operation list.
+-   Improve performance: `useCallback`, `useMemo`, [why-did-you-render](https://www.npmjs.com/package/why-did-you-render).
+-   Add [typedoc](https://typedoc.org/).
+-   Add end-to-end testing with [Cypress](https://www.cypress.io/).
+-   Thorough QA.
+
+## Tools used
+
+-   [Redux Toolkit](redux-toolkit.js.org) for state management.
+-   [Styled Components](https://styled-components.com/) for styling.
+-   [Material UI](https://mui.com/) for design.
+-   [Lodash](https://lodash.com/) as utility library.
 
 ## Available Scripts
 

@@ -15,14 +15,12 @@ const Select = styled('div')`
 
 type Props = {
     name: string;
-    value: boolean;
     onValueChange: (value: boolean) => void;
     onNameChange: (name: string) => void;
 };
 
 export const ArgumentInput = ({
     name,
-    value,
     onValueChange,
     onNameChange,
 }: Props): JSX.Element => {
@@ -41,12 +39,16 @@ export const ArgumentInput = ({
             <TextField
                 size='small'
                 label='Argument'
-                value={name}
                 variant='outlined'
                 onChange={onInput}
+                defaultValue='My Arg'
             />
             <Select>
-                <MuiSelect size='small' value={value} onChange={onSelect}>
+                <MuiSelect
+                    size='small'
+                    defaultValue={false}
+                    onChange={onSelect}
+                >
                     <MenuItem value='false'>false</MenuItem>
                     <MenuItem value='true'>true</MenuItem>
                 </MuiSelect>

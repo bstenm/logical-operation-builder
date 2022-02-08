@@ -35,7 +35,6 @@ export const ArgumentInputList = (): JSX.Element => {
             {argumentList.map((e: Argument) => (
                 <InputContainer key={e.id}>
                     <ArgumentInput
-                        value={e.value}
                         name={e.name}
                         onValueChange={(v: boolean): void => {
                             dispatch(updateValue({ id: e.id, value: v }));
