@@ -11,7 +11,6 @@ import { useComputeValue } from 'libs/useComputeValue';
 const Container = styled('div')`
     display: flex;
     font-size: calc(10px + 2vmin);
-    align-items: center;
     min-height: 100vh;
     flex-direction: column;
     justify-content: start;
@@ -19,6 +18,7 @@ const Container = styled('div')`
 `;
 
 const Builder = styled('img')`
+    margin: auto;
     margin-top: 60px;
     margin-bottom: 100px;
 `;
@@ -31,8 +31,11 @@ const Inputs = styled('div')`
 `;
 
 const Result = styled('div')(({ theme }) => ({
-    color: theme.palette.primary.main,
+    color: theme.palette.primary.dark,
+    padding: '8px 20px',
+    margin: 'auto',
     fontWeight: 'bold',
+    border: `1px solid ${theme.palette.primary.dark}`,
 }));
 
 const Icon = styled('span')`
@@ -42,7 +45,7 @@ const Icon = styled('span')`
 `;
 
 const Error = styled('div')(({ theme }) => ({
-    color: theme.palette.primary.dark,
+    color: theme.palette.secondary.main,
 }));
 
 const App = (): JSX.Element => {
