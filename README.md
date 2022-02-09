@@ -2,6 +2,7 @@
 
 -   Fix bug when updating an argument name while this argument in selected in the operation list.
 -   Improve performance: `useCallback`, `useMemo`, [why-did-you-render](https://www.npmjs.com/package/why-did-you-render).
+-   Simplify (better data structure to make computing the value easier).
 -   Add [typedoc](https://typedoc.org/).
 -   Add end-to-end testing with [Cypress](https://www.cypress.io/).
 -   Thorough QA.
